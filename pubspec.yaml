@@ -71,6 +71,8 @@ flutter:
   fonts:
     - family: CormorantGaramond
       fonts:
+        - asset: assets/fonts/CormorantGaramond-SemiBold.ttf
+          weight: 600
         - asset: assets/fonts/CormorantGaramond-SemiBoldItalic.ttf
           style: italic
           weight: 600
