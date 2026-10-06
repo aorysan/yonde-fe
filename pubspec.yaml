@@ -64,6 +64,42 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/fonts/
+    - assets/icons/
+
+  fonts:
+    - family: CormorantGaramond
+      fonts:
+        - asset: assets/fonts/CormorantGaramond-SemiBoldItalic.ttf
+          style: italic
+          weight: 600
+        - asset: assets/fonts/CormorantGaramond-Bold.ttf
+          weight: 700
+
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 500
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 600
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 700
+
+    - family: ZenMaruGothic
+      fonts:
+        - asset: assets/fonts/ZenMaruGothic-Regular.ttf
+          weight: 400
+
+    - family: NotoSerifJP
+      fonts:
+        - asset: assets/fonts/NotoSerifJP-SemiBold.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSerifJP-SemiBold.ttf
+          weight: 600
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
