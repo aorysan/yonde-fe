@@ -275,15 +275,6 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
   }) {
     return Stack(
       children: [
-        Positioned(
-          top: 0,
-          right: 0,
-          child: Icon(
-            Icons.spa_rounded,
-            size: 28,
-            color: colors.accent.withValues(alpha: 0.40),
-          ),
-        ),
         if (_dragOffsetX > 20)
           Positioned(
             top: 0,
@@ -324,102 +315,132 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
               ),
             ),
           ),
-        Center(child: content),
+        content,
       ],
     );
   }
 
   Widget _buildFront(AppColorScheme colors) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
       children: [
-        Text(
-          widget.card.kanji,
-          style: GoogleFonts.notoSerifJp(
-            fontSize: 96,
-            fontWeight: FontWeight.w600,
-            color: colors.cardForeground,
+        Positioned(
+          top: 0,
+          right: 0,
+          child: Icon(
+            Icons.spa_rounded,
+            size: 28,
+            color: colors.accent.withValues(alpha: 0.40),
           ),
         ),
-        const SizedBox(height: 8),
-        Text(
-          widget.card.reading,
-          style: GoogleFonts.zenMaruGothic(
-            fontSize: 18,
-            letterSpacing: 5.4,
-            color: colors.mutedForeground,
-          ),
-        ),
-        const SizedBox(height: 24),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.auto_awesome,
-              size: 12,
-              color: colors.mutedForeground.withValues(alpha: 0.6),
-            ),
-            const SizedBox(width: 4),
-            Text(
-              'TAP TO REVEAL',
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 11,
-                letterSpacing: 2.2,
-                color: colors.mutedForeground.withValues(alpha: 0.6),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                widget.card.kanji,
+                style: GoogleFonts.notoSerifJp(
+                  fontSize: 96,
+                  fontWeight: FontWeight.w600,
+                  color: colors.cardForeground,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+              Text(
+                widget.card.reading,
+                style: GoogleFonts.zenMaruGothic(
+                  fontSize: 18,
+                  letterSpacing: 5.4,
+                  color: colors.mutedForeground,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.auto_awesome,
+                    size: 12,
+                    color: colors.mutedForeground.withValues(alpha: 0.6),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'TAP TO REVEAL',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 11,
+                      letterSpacing: 2.2,
+                      color: colors.mutedForeground.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );
   }
 
   Widget _buildBack(AppColorScheme colors) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
       children: [
-        Text(
-          widget.card.meaning,
-          style: GoogleFonts.cormorantGaramond(
-            fontSize: 48,
-            fontWeight: FontWeight.w600,
-            fontStyle: FontStyle.italic,
-            color: colors.primary,
+        Positioned(
+          top: 0,
+          left: 0,
+          child: Icon(
+            Icons.spa_rounded,
+            size: 28,
+            color: colors.accent.withValues(alpha: 0.40),
           ),
-          textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(width: 40, height: 1, color: colors.accent),
-            const SizedBox(width: 6),
-            Icon(Icons.auto_awesome, size: 12, color: colors.accent),
-          ],
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                widget.card.meaning,
+                style: GoogleFonts.cormorantGaramond(
+                  fontSize: 48,
+                  fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.italic,
+                  color: colors.primary,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(width: 40, height: 1, color: colors.accent),
+                  const SizedBox(width: 6),
+                  Icon(Icons.auto_awesome, size: 12, color: colors.accent),
+                ],
+              ),
+              const SizedBox(height: 16),
+              if (widget.card.exampleJp != null) ...[
+                Text(
+                  widget.card.exampleJp!,
+                  style: GoogleFonts.notoSerifJp(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                    color: colors.cardForeground,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+              ],
+              if (widget.card.exampleEn != null) ...[
+                Text(
+                  widget.card.exampleEn!,
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 14,
+                    color: colors.mutedForeground,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ],
+          ),
         ),
-        const SizedBox(height: 16),
-        if (widget.card.exampleJp != null) ...[
-          Text(
-            widget.card.exampleJp!,
-            style: GoogleFonts.notoSerifJp(
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
-              color: colors.cardForeground,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-        ],
-        if (widget.card.exampleEn != null) ...[
-          Text(
-            widget.card.exampleEn!,
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 14,
-              color: colors.mutedForeground,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
       ],
     );
   }
