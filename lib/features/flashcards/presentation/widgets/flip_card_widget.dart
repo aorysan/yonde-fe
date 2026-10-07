@@ -32,10 +32,11 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
   late AnimationController _flipController;
   late Animation<double> _flipAnimation;
   late AnimationController _releaseController;
+  late Animation<double> _releaseAnimation;
   late AnimationController _entryController;
   late Animation<double> _entryAnimation;
-  Animation<double>? _releaseAnimation;
   double _dragOffsetX = 0.0;
+  double _releaseStartOffsetX = 0.0;
 
   @override
   void initState() {
@@ -52,6 +53,9 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
+    _releaseAnimation = _releaseController.drive(
+      CurveTween(curve: Curves.easeOut),
+    )..addListener(_handleReleaseTick);
 
     _entryController = AnimationController(
       vsync: this,
@@ -101,28 +105,40 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
 
   void _handleHorizontalDragEnd(DragEndDetails details) {
     if (_dragOffsetX > 100) {
+      _snapToRest();
       widget.onSwipeRight();
-    } else if (_dragOffsetX < -100) {
+      return;
+    }
+    if (_dragOffsetX < -100) {
+      _snapToRest();
       widget.onSwipeLeft();
+      return;
     }
     _animateBackToRest();
   }
 
+  void _handleHorizontalDragCancel() {
+    _animateBackToRest();
+  }
+
+  void _snapToRest() {
+    _releaseController.stop();
+    setState(() {
+      _dragOffsetX = 0.0;
+    });
+  }
+
   void _animateBackToRest() {
-    _releaseAnimation?.removeListener(_handleReleaseTick);
-    _releaseAnimation = Tween<double>(begin: _dragOffsetX, end: 0).animate(
-      CurvedAnimation(parent: _releaseController, curve: Curves.easeOut),
-    )..addListener(_handleReleaseTick);
+    _releaseStartOffsetX = _dragOffsetX;
     _releaseController.forward(from: 0.0);
   }
 
   void _handleReleaseTick() {
-    final animation = _releaseAnimation;
-    if (animation == null || !mounted) {
+    if (!mounted) {
       return;
     }
     setState(() {
-      _dragOffsetX = animation.value;
+      _dragOffsetX = _releaseStartOffsetX * (1 - _releaseAnimation.value);
     });
   }
 
@@ -178,6 +194,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
                     onTap: widget.onTap,
                     onHorizontalDragUpdate: _handleHorizontalDragUpdate,
                     onHorizontalDragEnd: _handleHorizontalDragEnd,
+                    onHorizontalDragCancel: _handleHorizontalDragCancel,
                     child: AnimatedBuilder(
                       animation: _flipAnimation,
                       builder: (context, child) {
@@ -373,7 +390,14 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),
-        Container(width: 40, height: 1, color: colors.accent),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(width: 40, height: 1, color: colors.accent),
+            const SizedBox(width: 6),
+            Icon(Icons.auto_awesome, size: 12, color: colors.accent),
+          ],
+        ),
         const SizedBox(height: 16),
         if (widget.card.exampleJp != null) ...[
           Text(
@@ -392,7 +416,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
             widget.card.exampleEn!,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 14,
-              color: colors.muted,
+              color: colors.mutedForeground,
             ),
             textAlign: TextAlign.center,
           ),
