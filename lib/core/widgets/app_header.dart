@@ -72,7 +72,7 @@ class _AppHeaderState extends State<AppHeader>
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: colors.primary.withOpacity(0.3),
+                      color: colors.primary.withValues(alpha: 0.3),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -121,7 +121,7 @@ class _AppHeaderState extends State<AppHeader>
                   height: 36,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: colors.card.withOpacity(0.7),
+                    color: colors.card.withValues(alpha: 0.7),
                     border: Border.all(color: colors.border),
                   ),
                   alignment: Alignment.center,
@@ -141,14 +141,15 @@ class _AppHeaderState extends State<AppHeader>
           ),
           const SizedBox(height: 12),
           // Status Chips: Streak & XP
-          Row(
+          Wrap(
+            spacing: 8,
+            runSpacing: 6,
             children: [
               _buildChip(
                 icon: Icons.local_fire_department_rounded,
                 label: '${widget.streak}-day streak',
                 colors: colors,
               ),
-              const SizedBox(width: 8),
               _buildChip(
                 icon: Icons.auto_awesome,
                 label: '${widget.xpDisplay} XP',

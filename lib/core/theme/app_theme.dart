@@ -13,7 +13,6 @@ class AppTheme {
       cardColor: colors.card,
       textTheme: AppTypography.appTextTheme(colors),
       colorScheme: ColorScheme.light(
-        background: colors.background,
         surface: colors.card,
         primary: colors.primary,
         onPrimary: colors.primaryForeground,
@@ -32,7 +31,6 @@ class AppTheme {
       cardColor: colors.card,
       textTheme: AppTypography.appTextTheme(colors),
       colorScheme: ColorScheme.dark(
-        background: colors.background,
         surface: colors.card,
         primary: colors.primary,
         onPrimary: colors.primaryForeground,

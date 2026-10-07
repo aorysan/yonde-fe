@@ -103,7 +103,7 @@ class _ReverieHeroCardState extends State<ReverieHeroCard> {
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
                               color: colors.primary,
-                            ),
+                            ).copyWith(fontFamilyFallback: const ['NotoSerifJP']),
                           ),
                         ],
                       ),
@@ -111,7 +111,8 @@ class _ReverieHeroCardState extends State<ReverieHeroCard> {
                     const SizedBox(height: 12),
                     Text(
                       'Shall we bloom together?',
-                      style: GoogleFonts.cormorantGaramond(
+                      style: TextStyle(
+                        fontFamily: 'CormorantGaramond',
                         fontSize: 30,
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.italic,
@@ -122,7 +123,8 @@ class _ReverieHeroCardState extends State<ReverieHeroCard> {
                     const SizedBox(height: 6),
                     Text(
                       'Three little petals to gather before dusk — keep your streak in flower.',
-                      style: GoogleFonts.plusJakartaSans(
+                      style: TextStyle(
+                        fontFamily: 'PlusJakartaSans',
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: colors.mutedForeground,

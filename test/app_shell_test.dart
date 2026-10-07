@@ -13,15 +13,15 @@ void main() {
     // Verify initial boot has Learn active
     expect(find.text('Kotoba no Hana'), findsOneWidget);
     expect(find.byKey(const Key('theme_toggle_button')), findsOneWidget);
-    expect(find.text('Learn Screen'), findsOneWidget);
-    expect(find.text('Cards Screen'), findsNothing);
-    expect(find.text('Bloom Screen'), findsNothing);
+    expect(find.text("Today's Reverie · 今日"), findsOneWidget);
+    expect(find.text('✦ Whispered Words · 単語'), findsNothing);
+    expect(find.text('Petal Diary'), findsNothing);
     expect(find.byIcon(Icons.dark_mode_rounded), findsOneWidget);
 
     // Toggle theme
     await tester.tap(find.byKey(const Key('theme_toggle_button')));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 400));
+    await tester.pump(const Duration(milliseconds: 250));
+    await tester.pump(const Duration(milliseconds: 250));
 
     // Verify theme actually changed to dark (icon flipped to light-mode glyph)
     expect(find.byIcon(Icons.dark_mode_rounded), findsNothing);
@@ -34,7 +34,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 300));
 
     // Verify tab actually switched to Cards
-    expect(find.text('Cards Screen'), findsOneWidget);
-    expect(find.text('Learn Screen'), findsNothing);
+    expect(find.text('✦ Whispered Words · 単語'), findsOneWidget);
+    expect(find.text("Today's Reverie · 今日"), findsNothing);
   });
 }
