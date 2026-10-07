@@ -28,12 +28,12 @@ class FloatingNavBar extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: colors.card.withOpacity(0.85),
+              color: colors.card.withValues(alpha: 0.85),
               borderRadius: BorderRadius.circular(32),
               border: Border.all(color: colors.border),
               boxShadow: [
                 BoxShadow(
-                  color: colors.primary.withOpacity(0.15),
+                  color: colors.primary.withValues(alpha: 0.15),
                   offset: const Offset(0, -10),
                   blurRadius: 30,
                   spreadRadius: -18,
@@ -99,7 +99,7 @@ class FloatingNavBar extends StatelessWidget {
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: colors.primary.withOpacity(0.3),
+                    color: colors.primary.withValues(alpha: 0.3),
                     offset: const Offset(0, 4),
                     blurRadius: 10,
                   ),

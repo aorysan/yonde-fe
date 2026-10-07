@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
 import 'core/widgets/ambient_background.dart';
-import 'core/widgets/app_header.dart';
 import 'core/widgets/floating_nav_bar.dart';
+import 'features/flashcards/presentation/flashcards_screen.dart';
+import 'features/learn/presentation/learn_screen.dart';
+import 'features/progress/presentation/bloom_screen.dart';
 
 class YondeApp extends StatefulWidget {
   const YondeApp({super.key});
@@ -18,9 +20,8 @@ class _YondeAppState extends State<YondeApp> {
 
   void _toggleTheme() {
     setState(() {
-      _themeMode = _themeMode == ThemeMode.light
-          ? ThemeMode.dark
-          : ThemeMode.light;
+      _themeMode =
+          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     });
   }
 
@@ -70,12 +71,9 @@ class _AppShellState extends State<AppShell> {
                 child: IndexedStack(
                   index: _currentTab,
                   children: [
-                    // Placeholder for Learn Screen (will be replaced in Part 2)
-                    _buildPlaceholderScreen('Learn Screen', colors),
-                    // Placeholder for Cards Screen (will be replaced in Part 2)
-                    _buildPlaceholderScreen('Cards Screen', colors),
-                    // Placeholder for Bloom Screen (will be replaced in Part 3)
-                    _buildPlaceholderScreen('Bloom Screen', colors),
+                    LearnScreen(onThemeToggle: widget.onThemeToggle),
+                    FlashcardsScreen(onThemeToggle: widget.onThemeToggle),
+                    BloomScreen(onThemeToggle: widget.onThemeToggle),
                   ],
                 ),
               ),
@@ -92,26 +90,6 @@ class _AppShellState extends State<AppShell> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildPlaceholderScreen(String title, AppColorScheme colors) {
-    return Column(
-      children: [
-        AppHeader(
-          streak: 7,
-          xpDisplay: '3.4k',
-          onThemeToggle: widget.onThemeToggle,
-        ),
-        Expanded(
-          child: Center(
-            child: Text(
-              title,
-              style: TextStyle(color: colors.foreground, fontSize: 18),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

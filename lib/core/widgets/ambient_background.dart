@@ -69,7 +69,7 @@ class _AmbientBackgroundState extends State<AmbientBackground>
               height: 224,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: colors.accent.withOpacity(0.20),
+                color: colors.accent.withValues(alpha: 0.20),
               ),
             ),
           ),
@@ -86,7 +86,7 @@ class _AmbientBackgroundState extends State<AmbientBackground>
               height: 224,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: colors.primary.withOpacity(0.20),
+                color: colors.primary.withValues(alpha: 0.20),
               ),
             ),
           ),
@@ -102,7 +102,7 @@ class _AmbientBackgroundState extends State<AmbientBackground>
                 painter: _PetalsPainter(
                   petals: _petals,
                   progress: _controller.value,
-                  color: colors.accent.withOpacity(0.4),
+                  color: colors.accent.withValues(alpha: 0.40),
                 ),
               );
             },

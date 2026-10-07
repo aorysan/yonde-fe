@@ -72,7 +72,7 @@ class _AppHeaderState extends State<AppHeader>
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: colors.primary.withOpacity(0.3),
+                      color: colors.primary.withValues(alpha: 0.3),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -121,7 +121,7 @@ class _AppHeaderState extends State<AppHeader>
                   height: 36,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: colors.card.withOpacity(0.7),
+                    color: colors.card.withValues(alpha: 0.7),
                     border: Border.all(color: colors.border),
                   ),
                   alignment: Alignment.center,

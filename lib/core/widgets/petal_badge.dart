@@ -29,7 +29,10 @@ class PetalBadge extends StatelessWidget {
       case NodeState.completed:
         bgColor = colors.secondary;
         textColor = colors.secondaryForeground;
-        border = Border.all(color: colors.accent.withOpacity(0.4), width: 2);
+        border = Border.all(
+          color: colors.accent.withValues(alpha: 0.4),
+          width: 2,
+        );
         break;
       case NodeState.active:
         bgColor = colors.primary;
@@ -69,7 +72,7 @@ class PetalBadge extends StatelessWidget {
                 height: size + 16,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: colors.accent.withOpacity(0.25),
+                  color: colors.accent.withValues(alpha: 0.25),
                 ),
               )
               .animate(onPlay: (controller) => controller.repeat(reverse: true))
