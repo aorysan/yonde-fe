@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../theme/app_colors.dart';
 
 class AppHeader extends StatefulWidget {
@@ -18,7 +19,8 @@ class AppHeader extends StatefulWidget {
   State<AppHeader> createState() => _AppHeaderState();
 }
 
-class _AppHeaderState extends State<AppHeader> with SingleTickerProviderStateMixin {
+class _AppHeaderState extends State<AppHeader>
+    with SingleTickerProviderStateMixin {
   late AnimationController _rotationController;
 
   @override
@@ -126,7 +128,9 @@ class _AppHeaderState extends State<AppHeader> with SingleTickerProviderStateMix
                   child: RotationTransition(
                     turns: _rotationController,
                     child: Icon(
-                      isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+                      isDark
+                          ? Icons.light_mode_rounded
+                          : Icons.dark_mode_rounded,
                       size: 18,
                       color: colors.accent,
                     ),

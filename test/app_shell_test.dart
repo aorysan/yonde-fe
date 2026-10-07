@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:yonde/app.dart';
 
 void main() {
-  testWidgets('YondeApp boots, renders AppShell, and toggles theme', (tester) async {
+  testWidgets('YondeApp boots, renders AppShell, and toggles theme', (
+    tester,
+  ) async {
     await tester.pumpWidget(const YondeApp());
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 350));

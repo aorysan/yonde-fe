@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../models/node_state.dart';
 import '../theme/app_colors.dart';
 
@@ -64,13 +65,13 @@ class PetalBadge extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            width: size + 16,
-            height: size + 16,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: colors.accent.withOpacity(0.25),
-            ),
-          )
+                width: size + 16,
+                height: size + 16,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: colors.accent.withOpacity(0.25),
+                ),
+              )
               .animate(onPlay: (controller) => controller.repeat(reverse: true))
               .scale(
                 begin: const Offset(0.9, 0.9),

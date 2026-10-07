@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
 import 'core/widgets/ambient_background.dart';
@@ -17,7 +18,9 @@ class _YondeAppState extends State<YondeApp> {
 
   void _toggleTheme() {
     setState(() {
-      _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+      _themeMode = _themeMode == ThemeMode.light
+          ? ThemeMode.dark
+          : ThemeMode.light;
     });
   }
 
@@ -43,10 +46,7 @@ class _YondeAppState extends State<YondeApp> {
 class AppShell extends StatefulWidget {
   final VoidCallback onThemeToggle;
 
-  const AppShell({
-    super.key,
-    required this.onThemeToggle,
-  });
+  const AppShell({super.key, required this.onThemeToggle});
 
   @override
   State<AppShell> createState() => _AppShellState();

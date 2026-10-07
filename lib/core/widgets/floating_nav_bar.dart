@@ -1,6 +1,8 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../theme/app_colors.dart';
 
 class FloatingNavBar extends StatelessWidget {
@@ -110,7 +112,9 @@ class FloatingNavBar extends StatelessWidget {
             Icon(
               icon,
               size: 20,
-              color: isSelected ? colors.primaryForeground : colors.mutedForeground,
+              color: isSelected
+                  ? colors.primaryForeground
+                  : colors.mutedForeground,
             ),
             if (isSelected) ...[
               const SizedBox(width: 8),

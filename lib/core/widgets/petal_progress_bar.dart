@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+
 import '../theme/app_colors.dart';
 
 class PetalProgressBar extends StatelessWidget {
   final double progress;
   final double height;
 
-  const PetalProgressBar({
-    super.key,
-    required this.progress,
-    this.height = 6,
-  });
+  const PetalProgressBar({super.key, required this.progress, this.height = 6});
 
   @override
   Widget build(BuildContext context) {

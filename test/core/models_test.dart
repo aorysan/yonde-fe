@@ -38,9 +38,30 @@ void main() {
         number: 1,
         title: 'Awakening Signals',
         nodes: [
-          LessonNode(kanji: '挨', title: 'N1', reading: 'r1', petalsEarned: 10, petalsTotal: 10, state: NodeState.completed),
-          LessonNode(kanji: '自', title: 'N2', reading: 'r2', petalsEarned: 10, petalsTotal: 10, state: NodeState.completed),
-          LessonNode(kanji: '数', title: 'N3', reading: 'r3', petalsEarned: 5, petalsTotal: 10, state: NodeState.active),
+          LessonNode(
+            kanji: '挨',
+            title: 'N1',
+            reading: 'r1',
+            petalsEarned: 10,
+            petalsTotal: 10,
+            state: NodeState.completed,
+          ),
+          LessonNode(
+            kanji: '自',
+            title: 'N2',
+            reading: 'r2',
+            petalsEarned: 10,
+            petalsTotal: 10,
+            state: NodeState.completed,
+          ),
+          LessonNode(
+            kanji: '数',
+            title: 'N3',
+            reading: 'r3',
+            petalsEarned: 5,
+            petalsTotal: 10,
+            state: NodeState.active,
+          ),
         ],
       );
 

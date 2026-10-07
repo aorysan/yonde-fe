@@ -32,7 +32,9 @@ void main() {
       expect(colors.border, const Color(0xFF421323));
     });
 
-    testWidgets('AppThemeScope provides correct AppColorScheme down the tree', (tester) async {
+    testWidgets('AppThemeScope provides correct AppColorScheme down the tree', (
+      tester,
+    ) async {
       late AppColorScheme resolvedColors;
 
       await tester.pumpWidget(

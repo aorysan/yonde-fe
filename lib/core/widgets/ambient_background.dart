@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
+
 import '../theme/app_colors.dart';
 
 class AmbientBackground extends StatefulWidget {
@@ -148,7 +150,8 @@ class _PetalsPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     for (final petal in petals) {
-      final adjustedProgress = ((progress / petal.durationFactor) + petal.delay) % 1.0;
+      final adjustedProgress =
+          ((progress / petal.durationFactor) + petal.delay) % 1.0;
       final y = adjustedProgress * (size.height + 40) - 20;
       final sway = math.sin(adjustedProgress * math.pi * 4) * 20;
       final x = (petal.x * size.width) + sway;

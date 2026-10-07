@@ -8,7 +8,10 @@ import 'package:yonde/core/widgets/app_header.dart';
 import 'package:yonde/core/widgets/floating_nav_bar.dart';
 
 void main() {
-  Widget testHarness(Widget child, [AppColorScheme scheme = const DawnPetal()]) {
+  Widget testHarness(
+    Widget child, [
+    AppColorScheme scheme = const DawnPetal(),
+  ]) {
     return MaterialApp(
       home: AppThemeScope(
         colorScheme: scheme,
@@ -17,24 +20,38 @@ void main() {
     );
   }
 
-  testWidgets('PetalProgressBar renders properly with clamp value', (tester) async {
-    await tester.pumpWidget(testHarness(const PetalProgressBar(progress: 0.5, height: 6)));
+  testWidgets('PetalProgressBar renders properly with clamp value', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      testHarness(const PetalProgressBar(progress: 0.5, height: 6)),
+    );
     expect(find.byType(PetalProgressBar), findsOneWidget);
   });
 
-  testWidgets('PetalBadge renders kanji in active and completed states', (tester) async {
-    await tester.pumpWidget(testHarness(
-      const PetalBadge(kanji: '挨', state: NodeState.active),
-    ));
+  testWidgets('PetalBadge renders kanji in active and completed states', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      testHarness(const PetalBadge(kanji: '挨', state: NodeState.active)),
+    );
     await tester.pump(const Duration(milliseconds: 1));
     expect(find.text('挨'), findsOneWidget);
   });
 
-  testWidgets('AppHeader triggers onThemeToggle callback when tapped', (tester) async {
+  testWidgets('AppHeader triggers onThemeToggle callback when tapped', (
+    tester,
+  ) async {
     var toggled = false;
-    await tester.pumpWidget(testHarness(
-      AppHeader(streak: 7, xpDisplay: '3.4k', onThemeToggle: () => toggled = true),
-    ));
+    await tester.pumpWidget(
+      testHarness(
+        AppHeader(
+          streak: 7,
+          xpDisplay: '3.4k',
+          onThemeToggle: () => toggled = true,
+        ),
+      ),
+    );
 
     expect(find.text('Kotoba no Hana'), findsOneWidget);
     expect(find.text('7-day streak'), findsOneWidget);
@@ -44,11 +61,15 @@ void main() {
     expect(toggled, isTrue);
   });
 
-  testWidgets('FloatingNavBar switches tabs and fires callback', (tester) async {
+  testWidgets('FloatingNavBar switches tabs and fires callback', (
+    tester,
+  ) async {
     var selectedTab = 0;
-    await tester.pumpWidget(testHarness(
-      FloatingNavBar(currentIndex: 0, onTap: (idx) => selectedTab = idx),
-    ));
+    await tester.pumpWidget(
+      testHarness(
+        FloatingNavBar(currentIndex: 0, onTap: (idx) => selectedTab = idx),
+      ),
+    );
 
     expect(find.text('Learn'), findsOneWidget);
     await tester.tap(find.byKey(const Key('nav_item_1')));
