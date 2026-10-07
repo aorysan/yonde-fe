@@ -58,8 +58,8 @@ class CardActionControls extends StatelessWidget {
               onTap: onFlip,
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 28,
-                  vertical: 14,
+                  horizontal: 24,
+                  vertical: 12,
                 ),
                 decoration: BoxDecoration(
                   color: colors.card,
