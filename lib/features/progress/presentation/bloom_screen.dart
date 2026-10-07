@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/app_header.dart';
 import '../data/bloom_dummy_data.dart';
 import 'widgets/bloom_level_card.dart';
@@ -16,6 +17,8 @@ class BloomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = AppColorScheme.of(context);
+
     return Column(
       children: [
         // App Header
@@ -51,10 +54,10 @@ class BloomScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: StatCard(
-                          decorator: const Icon(
+                          decorator: Icon(
                             Icons.local_fire_department_rounded,
                             size: 16,
-                            color: Color(0xFFEE87AC),
+                            color: colors.accent,
                           ),
                           value: '${dummyBloomData.streak}',
                           label: 'STREAK',
@@ -63,13 +66,13 @@ class BloomScreen extends StatelessWidget {
                       const SizedBox(width: 12),
                       Expanded(
                         child: StatCard(
-                          decorator: const Text(
+                          decorator: Text(
                             '語',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.italic,
-                              color: Color(0xFFEE87AC),
+                              color: colors.accent,
                             ),
                           ),
                           value: '${dummyBloomData.wordsMastered}',
@@ -79,10 +82,10 @@ class BloomScreen extends StatelessWidget {
                       const SizedBox(width: 12),
                       Expanded(
                         child: StatCard(
-                          decorator: const Icon(
+                          decorator: Icon(
                             Icons.auto_awesome,
                             size: 16,
-                            color: Color(0xFFEE87AC),
+                            color: colors.accent,
                           ),
                           value: dummyBloomData.xpDisplay,
                           label: 'TOTAL XP',
