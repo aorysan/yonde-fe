@@ -273,6 +273,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
   }) {
     return Stack(
       children: [
+        content,
         if (_dragOffsetX > 20)
           Positioned(
             top: 0,
@@ -313,7 +314,6 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
               ),
             ),
           ),
-        content,
       ],
     );
   }
