@@ -14,11 +14,7 @@ class SCurvePath extends StatelessWidget {
   final Chapter chapter;
   final void Function(LessonNode node)? onNodeTap;
 
-  const SCurvePath({
-    super.key,
-    required this.chapter,
-    this.onNodeTap,
-  });
+  const SCurvePath({super.key, required this.chapter, this.onNodeTap});
 
   @override
   Widget build(BuildContext context) {
@@ -125,11 +121,7 @@ class SCurvePath extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    PetalBadge(
-                      kanji: node.kanji,
-                      state: node.state,
-                      size: 56,
-                    ),
+                    PetalBadge(kanji: node.kanji, state: node.state, size: 56),
                     const SizedBox(width: 14),
                     Expanded(
                       child: Column(
@@ -164,10 +156,7 @@ class SCurvePath extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 8),
-                          PetalProgressBar(
-                            progress: node.progress,
-                            height: 6,
-                          ),
+                          PetalProgressBar(progress: node.progress, height: 6),
                           const SizedBox(height: 6),
                           Row(
                             children: [
@@ -215,11 +204,7 @@ class SCurvePath extends StatelessWidget {
           child: Icon(Icons.check_rounded, size: 18, color: colors.accent),
         );
       case NodeState.active:
-        return Icon(
-          Icons.auto_awesome,
-          size: 20,
-          color: colors.primary,
-        );
+        return Icon(Icons.auto_awesome, size: 20, color: colors.primary);
       case NodeState.locked:
         return Icon(
           Icons.lock_outline_rounded,
@@ -248,11 +233,7 @@ class _DashedLinePainter extends CustomPainter {
     double startY = 0;
 
     while (startY < size.height) {
-      canvas.drawLine(
-        Offset(x, startY),
-        Offset(x, startY + dashHeight),
-        paint,
-      );
+      canvas.drawLine(Offset(x, startY), Offset(x, startY + dashHeight), paint);
       startY += dashHeight + dashSpace;
     }
   }

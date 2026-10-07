@@ -8,10 +8,7 @@ import 'widgets/s_curve_path.dart';
 class LearnScreen extends StatelessWidget {
   final VoidCallback onThemeToggle;
 
-  const LearnScreen({
-    super.key,
-    required this.onThemeToggle,
-  });
+  const LearnScreen({super.key, required this.onThemeToggle});
 
   @override
   Widget build(BuildContext context) {

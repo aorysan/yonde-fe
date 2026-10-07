@@ -5,7 +5,9 @@ import 'package:yonde/features/learn/data/learn_dummy_data.dart';
 import 'package:yonde/features/learn/presentation/widgets/s_curve_path.dart';
 
 void main() {
-  testWidgets('SCurvePath renders chapter header and all 5 node tiles', (tester) async {
+  testWidgets('SCurvePath renders chapter header and all 5 node tiles', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: AppThemeScope(

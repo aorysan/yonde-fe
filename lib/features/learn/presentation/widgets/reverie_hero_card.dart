@@ -80,7 +80,10 @@ class _ReverieHeroCardState extends State<ReverieHeroCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: colors.card.withValues(alpha: 0.70),
                         borderRadius: BorderRadius.circular(16),
@@ -88,7 +91,11 @@ class _ReverieHeroCardState extends State<ReverieHeroCard> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.auto_awesome, size: 12, color: colors.primary),
+                          Icon(
+                            Icons.auto_awesome,
+                            size: 12,
+                            color: colors.primary,
+                          ),
                           const SizedBox(width: 4),
                           Text(
                             "Today's Reverie · 今日",
@@ -132,11 +139,15 @@ class _ReverieHeroCardState extends State<ReverieHeroCard> {
                               return Padding(
                                 padding: const EdgeInsets.only(right: 6),
                                 child: Icon(
-                                  isFilled ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                                  isFilled
+                                      ? Icons.favorite_rounded
+                                      : Icons.favorite_border_rounded,
                                   size: 16,
                                   color: isFilled
                                       ? colors.accent
-                                      : colors.mutedForeground.withValues(alpha: 0.4),
+                                      : colors.mutedForeground.withValues(
+                                          alpha: 0.4,
+                                        ),
                                 ),
                               );
                             }),
@@ -164,13 +175,18 @@ class _ReverieHeroCardState extends State<ReverieHeroCard> {
                             duration: const Duration(milliseconds: 150),
                             curve: Curves.easeOut,
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 8,
+                              ),
                               decoration: BoxDecoration(
                                 color: colors.primary,
                                 borderRadius: BorderRadius.circular(28),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: colors.primary.withValues(alpha: 0.3),
+                                    color: colors.primary.withValues(
+                                      alpha: 0.3,
+                                    ),
                                     offset: const Offset(0, 4),
                                     blurRadius: 10,
                                   ),

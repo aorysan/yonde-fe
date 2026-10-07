@@ -165,12 +165,47 @@ void main() {
     expect(find.text('Valkyrie'), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('btn_cherish')));
+    // Immediate frame check: front face should immediately be showing without playing 400ms reverse flip
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(find.text('桜'), findsOneWidget);
+    expect(find.text('Cherry Blossom'), findsNothing);
+
     await tester.pumpAndSettle();
 
     expect(find.text('2 / 5'), findsOneWidget);
     expect(find.text('桜'), findsOneWidget);
     expect(find.text('Cherry Blossom'), findsNothing);
   });
+
+  testWidgets(
+    'dragging while card is flipped shows feedback chip and keeps back face',
+    (tester) async {
+      await tester.pumpWidget(buildScreen());
+
+      // Flip card first
+      await tester.tap(find.byKey(const Key('btn_flip')));
+      await tester.pumpAndSettle();
+      expect(find.text('Valkyrie'), findsOneWidget);
+
+      // Drag right under threshold
+      final gesture = await startCardDrag(tester);
+      await gesture.moveBy(const Offset(20, 0));
+      await tester.pump();
+      await gesture.moveBy(const Offset(20, 0));
+      await tester.pump();
+      await gesture.moveBy(const Offset(20, 0));
+      await tester.pump();
+
+      expect(find.text('Cherish ♡'), findsOneWidget);
+      expect(find.text('Valkyrie'), findsOneWidget);
+
+      await gesture.up();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Cherish ♡'), findsNothing);
+      expect(find.text('Valkyrie'), findsOneWidget);
+    },
+  );
 
   testWidgets('cherish advances and revisit goes back with wrap-around', (
     tester,

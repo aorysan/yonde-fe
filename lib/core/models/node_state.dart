@@ -1,5 +1,1 @@
-enum NodeState {
-  completed,
-  active,
-  locked,
-}
+enum NodeState { completed, active, locked }
