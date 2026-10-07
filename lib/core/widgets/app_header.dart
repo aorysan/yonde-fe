@@ -141,14 +141,15 @@ class _AppHeaderState extends State<AppHeader>
           ),
           const SizedBox(height: 12),
           // Status Chips: Streak & XP
-          Row(
+          Wrap(
+            spacing: 8,
+            runSpacing: 6,
             children: [
               _buildChip(
                 icon: Icons.local_fire_department_rounded,
                 label: '${widget.streak}-day streak',
                 colors: colors,
               ),
-              const SizedBox(width: 8),
               _buildChip(
                 icon: Icons.auto_awesome,
                 label: '${widget.xpDisplay} XP',

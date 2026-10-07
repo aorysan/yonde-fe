@@ -39,15 +39,20 @@ class WeeklyPetalChart extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Petal Diary',
-                      style: GoogleFonts.cormorantGaramond(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                        fontStyle: FontStyle.italic,
-                        color: colors.cardForeground,
+                    Flexible(
+                      child: Text(
+                        'Petal Diary',
+                        style: GoogleFonts.cormorantGaramond(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          fontStyle: FontStyle.italic,
+                          color: colors.cardForeground,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    const SizedBox(width: 8),
                     Text(
                       'THIS WEEK',
                       style: GoogleFonts.plusJakartaSans(
@@ -68,7 +73,9 @@ class WeeklyPetalChart extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: List.generate(7, (index) {
                       final val = index < dailyPetals.length ? dailyPetals[index] : 0;
-                      final factor = maxPetals == 0 ? 0.0 : (val / maxPetals).clamp(0.1, 1.0);
+                      final factor = (maxPetals == 0 || val == 0)
+                          ? 0.0
+                          : (val / maxPetals).clamp(0.1, 1.0);
                       final isHighlighted = index == highlightedDayIndex;
 
                       return Expanded(

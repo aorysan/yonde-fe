@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/models/keepsake_data.dart';
@@ -55,7 +54,7 @@ class KeepsakeGrid extends StatelessWidget {
               crossAxisCount: 3,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 0.66,
+              childAspectRatio: 0.50,
             ),
             itemBuilder: (context, index) {
               final item = keepsakes[index];
@@ -74,17 +73,13 @@ class KeepsakeGrid extends StatelessWidget {
   ) {
     return Opacity(
       opacity: item.unlocked ? 1.0 : 0.55,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(28),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-            decoration: BoxDecoration(
-              color: colors.card.withValues(alpha: 0.85),
-              borderRadius: BorderRadius.circular(28),
-              border: Border.all(color: colors.border),
-              boxShadow: item.unlocked
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        decoration: BoxDecoration(
+          color: colors.card.withValues(alpha: 0.90),
+          borderRadius: BorderRadius.circular(28),
+          border: Border.all(color: colors.border),
+          boxShadow: item.unlocked
                   ? [
                       BoxShadow(
                         color: colors.accent.withValues(alpha: 0.15),
@@ -157,7 +152,7 @@ class KeepsakeGrid extends StatelessWidget {
                           color: colors.mutedForeground,
                         ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
 
                 // Title
                 Text(
@@ -171,7 +166,7 @@ class KeepsakeGrid extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 2),
 
                 // Description
                 Text(
@@ -187,8 +182,6 @@ class KeepsakeGrid extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ),
     );
   }
 }

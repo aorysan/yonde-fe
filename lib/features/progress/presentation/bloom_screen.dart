@@ -72,7 +72,6 @@ class BloomScreen extends StatelessWidget {
                             style: GoogleFonts.notoSerifJp(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic,
                               color: colors.accent,
                             ),
                           ),

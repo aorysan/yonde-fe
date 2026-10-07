@@ -29,7 +29,8 @@ class BloomLevelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = AppColorScheme.of(context);
-    final progress = nextLevelXp == 0 ? 0.0 : currentXp / nextLevelXp;
+    final progress =
+        (nextLevelXp == 0 ? 0.0 : currentXp / nextLevelXp).clamp(0.0, 1.0);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -83,13 +84,17 @@ class BloomLevelCard extends StatelessWidget {
                         children: [
                           Icon(Icons.auto_awesome, size: 12, color: colors.primary),
                           const SizedBox(width: 4),
-                          Text(
-                            '✦ $title · $titleKanji',
-                            style: GoogleFonts.plusJakartaSans(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: colors.primary,
-                            ).copyWith(fontFamilyFallback: const ['NotoSerifJP']),
+                          Flexible(
+                            child: Text(
+                              '✦ $title · $titleKanji',
+                              style: GoogleFonts.plusJakartaSans(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: colors.primary,
+                              ).copyWith(fontFamilyFallback: const ['NotoSerifJP']),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ],
                       ),

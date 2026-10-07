@@ -103,7 +103,7 @@ class _ReverieHeroCardState extends State<ReverieHeroCard> {
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
                               color: colors.primary,
-                            ),
+                            ).copyWith(fontFamilyFallback: const ['NotoSerifJP']),
                           ),
                         ],
                       ),

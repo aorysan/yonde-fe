@@ -57,7 +57,7 @@ class PetalBadge extends StatelessWidget {
         kanji,
         style: GoogleFonts.zenMaruGothic(
           fontSize: size * 0.43,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w400,
           color: textColor,
         ),
       ),

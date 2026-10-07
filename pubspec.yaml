@@ -83,12 +83,6 @@ flutter:
       fonts:
         - asset: assets/fonts/PlusJakartaSans-Regular.ttf
           weight: 400
-        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
-          weight: 500
-        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
-          weight: 600
-        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
-          weight: 700
 
     - family: ZenMaruGothic
       fonts:
@@ -97,8 +91,6 @@ flutter:
 
     - family: NotoSerifJP
       fonts:
-        - asset: assets/fonts/NotoSerifJP-SemiBold.ttf
-          weight: 500
         - asset: assets/fonts/NotoSerifJP-SemiBold.ttf
           weight: 600
 
