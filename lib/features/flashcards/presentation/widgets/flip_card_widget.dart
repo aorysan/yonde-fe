@@ -197,129 +197,67 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
                     onHorizontalDragUpdate: _handleHorizontalDragUpdate,
                     onHorizontalDragEnd: _handleHorizontalDragEnd,
                     onHorizontalDragCancel: _handleHorizontalDragCancel,
-                    child: Stack(
-                      children: [
-                        AnimatedBuilder(
-                          animation: _flipAnimation,
-                          builder: (context, child) {
-                            final angle = _flipAnimation.value * math.pi;
-                            final isUnder = angle > math.pi / 2;
+                    child: AnimatedBuilder(
+                      animation: _flipAnimation,
+                      builder: (context, child) {
+                        final angle = _flipAnimation.value * math.pi;
+                        final isUnder = angle > math.pi / 2;
 
-                            return Transform(
-                              transform: Matrix4.identity()
-                                ..setEntry(3, 2, 0.001)
-                                ..rotateY(angle),
-                              alignment: Alignment.center,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(28),
-                                child: BackdropFilter(
-                                  filter: ImageFilter.blur(
-                                    sigmaX: 12,
-                                    sigmaY: 12,
-                                  ),
-                                  child: Container(
-                                    height: 400,
-                                    width: 330,
-                                    padding: const EdgeInsets.all(24),
-                                    decoration: BoxDecoration(
-                                      color: colors.card.withValues(
-                                        alpha: 0.85,
+                        return Transform(
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, 0.001)
+                            ..rotateY(angle),
+                          alignment: Alignment.center,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(28),
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                              child: Container(
+                                height: 400,
+                                width: 330,
+                                padding: const EdgeInsets.all(24),
+                                decoration: BoxDecoration(
+                                  color: colors.card.withValues(alpha: 0.85),
+                                  borderRadius: BorderRadius.circular(28),
+                                  border: Border.all(color: colors.border),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: colors.accent.withValues(
+                                        alpha: 0.2,
                                       ),
-                                      borderRadius: BorderRadius.circular(28),
-                                      border: Border.all(color: colors.border),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: colors.accent.withValues(
-                                            alpha: 0.2,
-                                          ),
-                                          offset: const Offset(0, 8),
-                                          blurRadius: 24,
+                                      offset: const Offset(0, 8),
+                                      blurRadius: 24,
+                                    ),
+                                  ],
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      colors.accent.withValues(alpha: 0.10),
+                                      Colors.transparent,
+                                      colors.secondary.withValues(alpha: 0.40),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                child: isUnder
+                                    ? Transform(
+                                        transform: Matrix4.identity()
+                                          ..rotateY(math.pi),
+                                        alignment: Alignment.center,
+                                        child: _buildCardContent(
+                                          content: _buildBack(colors),
+                                          colors: colors,
                                         ),
-                                      ],
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          colors.accent.withValues(alpha: 0.10),
-                                          Colors.transparent,
-                                          colors.secondary.withValues(
-                                            alpha: 0.40,
-                                          ),
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
+                                      )
+                                    : _buildCardContent(
+                                        content: _buildFront(colors),
+                                        colors: colors,
                                       ),
-                                    ),
-                                    child: Center(
-                                      child: isUnder
-                                          ? Transform(
-                                              transform: Matrix4.identity()
-                                                ..rotateY(math.pi),
-                                              alignment: Alignment.center,
-                                              child: _buildBack(colors),
-                                            )
-                                          : _buildFront(colors),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                        Positioned(
-                          top: 24,
-                          right: 24,
-                          child: Icon(
-                            Icons.spa_rounded,
-                            size: 28,
-                            color: colors.accent.withValues(alpha: 0.40),
-                          ),
-                        ),
-                        if (_dragOffsetX > 20)
-                          Positioned(
-                            top: 24,
-                            left: 24,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: colors.accent.withValues(alpha: 0.2),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Text(
-                                'Cherish ♡',
-                                style: GoogleFonts.plusJakartaSans(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                  color: colors.primary,
-                                ),
                               ),
                             ),
                           ),
-                        if (_dragOffsetX < -20)
-                          Positioned(
-                            top: 24,
-                            right: 24,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: colors.muted,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Text(
-                                'Revisit',
-                                style: GoogleFonts.plusJakartaSans(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                  color: colors.mutedForeground,
-                                ),
-                              ),
-                            ),
-                          ),
-                      ],
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -328,6 +266,66 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildCardContent({
+    required Widget content,
+    required AppColorScheme colors,
+  }) {
+    return Stack(
+      children: [
+        Positioned(
+          top: 0,
+          right: 0,
+          child: Icon(
+            Icons.spa_rounded,
+            size: 28,
+            color: colors.accent.withValues(alpha: 0.40),
+          ),
+        ),
+        if (_dragOffsetX > 20)
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              decoration: BoxDecoration(
+                color: colors.accent.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                'Cherish ♡',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: colors.primary,
+                ),
+              ),
+            ),
+          ),
+        if (_dragOffsetX < -20)
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              decoration: BoxDecoration(
+                color: colors.muted,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                'Revisit',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: colors.mutedForeground,
+                ),
+              ),
+            ),
+          ),
+        Center(child: content),
+      ],
     );
   }
 
