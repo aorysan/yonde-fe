@@ -80,7 +80,7 @@ class SCurvePath extends StatelessWidget {
                       alignment: isEven
                           ? Alignment.centerLeft
                           : Alignment.centerRight,
-                      child: _buildNodeTile(context, node, colors),
+                      child: _buildNodeTile(node, colors),
                     ),
                   );
                 }),
@@ -92,24 +92,21 @@ class SCurvePath extends StatelessWidget {
     );
   }
 
-  Widget _buildNodeTile(
-    BuildContext context,
-    LessonNode node,
-    AppColorScheme colors,
-  ) {
+  Widget _buildNodeTile(LessonNode node, AppColorScheme colors) {
     final isLocked = node.state == NodeState.locked;
     final isActive = node.state == NodeState.active;
 
     return FractionallySizedBox(
       widthFactor: 0.85,
       child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: () => onNodeTap?.call(node),
-        child: Opacity(
-          opacity: isLocked ? 0.55 : 1.0,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(28),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(28),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+            child: Opacity(
+              opacity: isLocked ? 0.55 : 1.0,
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
@@ -141,6 +138,7 @@ class SCurvePath extends StatelessWidget {
                           Row(
                             children: [
                               Flexible(
+                                flex: 2,
                                 child: Text(
                                   node.title,
                                   style: GoogleFonts.cormorantGaramond(
@@ -152,11 +150,15 @@ class SCurvePath extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(width: 8),
-                              Text(
-                                node.reading,
-                                style: GoogleFonts.zenMaruGothic(
-                                  fontSize: 12,
-                                  color: colors.mutedForeground,
+                              Flexible(
+                                flex: 1,
+                                child: Text(
+                                  node.reading,
+                                  style: GoogleFonts.zenMaruGothic(
+                                    fontSize: 12,
+                                    color: colors.mutedForeground,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ],
