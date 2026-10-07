@@ -78,9 +78,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
     super.didUpdateWidget(oldWidget);
     if (widget.card != oldWidget.card) {
       _entryController.forward(from: 0.0);
-      if (!widget.isFlipped) {
-        _flipController.value = 0.0;
-      }
+      _flipController.value = widget.isFlipped ? 1.0 : 0.0;
     } else if (widget.isFlipped != oldWidget.isFlipped) {
       if (widget.isFlipped) {
         _flipController.forward();
