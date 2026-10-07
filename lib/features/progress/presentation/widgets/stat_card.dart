@@ -36,13 +36,16 @@ class StatCard extends StatelessWidget {
             children: [
               decorator,
               const SizedBox(height: 6),
-              Text(
-                value,
-                style: GoogleFonts.cormorantGaramond(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: colors.cardForeground,
-                  height: 1.1,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  value,
+                  style: GoogleFonts.cormorantGaramond(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: colors.cardForeground,
+                    height: 1.1,
+                  ),
                 ),
               ),
               const SizedBox(height: 2),

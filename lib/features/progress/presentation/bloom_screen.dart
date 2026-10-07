@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/app_header.dart';
 import '../data/bloom_dummy_data.dart';
@@ -68,7 +69,7 @@ class BloomScreen extends StatelessWidget {
                         child: StatCard(
                           decorator: Text(
                             '語',
-                            style: TextStyle(
+                            style: GoogleFonts.notoSerifJp(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.italic,

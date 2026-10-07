@@ -55,7 +55,7 @@ class KeepsakeGrid extends StatelessWidget {
               crossAxisCount: 3,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 0.72,
+              childAspectRatio: 0.66,
             ),
             itemBuilder: (context, index) {
               final item = keepsakes[index];
@@ -84,6 +84,15 @@ class KeepsakeGrid extends StatelessWidget {
               color: colors.card.withValues(alpha: 0.85),
               borderRadius: BorderRadius.circular(28),
               border: Border.all(color: colors.border),
+              boxShadow: item.unlocked
+                  ? [
+                      BoxShadow(
+                        color: colors.accent.withValues(alpha: 0.15),
+                        offset: const Offset(0, 4),
+                        blurRadius: 16,
+                      ),
+                    ]
+                  : null,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -114,27 +123,33 @@ class KeepsakeGrid extends StatelessWidget {
                   ),
                   alignment: Alignment.center,
                   child: item.unlocked
-                      ? Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Text(
-                              item.kanji ?? '',
-                              style: GoogleFonts.cormorantGaramond(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                color: colors.primaryForeground,
+                      ? SizedBox(
+                          width: 56,
+                          height: 56,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Center(
+                                child: Text(
+                                  item.kanji ?? '',
+                                  style: GoogleFonts.notoSerifJp(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
+                                    color: colors.primaryForeground,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              top: 6,
-                              right: 6,
-                              child: Icon(
-                                Icons.favorite_rounded,
-                                size: 10,
-                                color: colors.accent,
+                              Positioned(
+                                top: 4,
+                                right: 4,
+                                child: Icon(
+                                  Icons.favorite_rounded,
+                                  size: 10,
+                                  color: colors.accent,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         )
                       : Icon(
                           Icons.lock_outline_rounded,

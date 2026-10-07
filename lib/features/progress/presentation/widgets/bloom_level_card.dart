@@ -89,7 +89,7 @@ class BloomLevelCard extends StatelessWidget {
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
                               color: colors.primary,
-                            ),
+                            ).copyWith(fontFamilyFallback: const ['NotoSerifJP']),
                           ),
                         ],
                       ),
@@ -243,16 +243,18 @@ class _CircularGaugePainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    // Glow Shadow
-    final glowPaint = Paint()
-      ..color = accentColor.withValues(alpha: 0.35)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth + 4
-      ..strokeCap = StrokeCap.round
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
+    // Glow Shadow & Progress Arc (only when progress > 0 to avoid zero-progress round cap dot)
+    if (progress > 0) {
+      final glowPaint = Paint()
+        ..color = accentColor.withValues(alpha: 0.35)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = strokeWidth + 4
+        ..strokeCap = StrokeCap.round
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
 
-    canvas.drawArc(rect, -math.pi / 2, sweepAngle, false, glowPaint);
-    canvas.drawArc(rect, -math.pi / 2, sweepAngle, false, progressPaint);
+      canvas.drawArc(rect, -math.pi / 2, sweepAngle, false, glowPaint);
+      canvas.drawArc(rect, -math.pi / 2, sweepAngle, false, progressPaint);
+    }
   }
 
   @override
